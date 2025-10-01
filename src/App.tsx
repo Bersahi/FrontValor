@@ -11,28 +11,26 @@ import {
 } from 'lucide-react';
 
 // Import UI components
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  Input,
-  Label,
-  Progress,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Separator,
-  Textarea
-} from './components/ui';
+import Button from './components/ui/Button';
+import Card from './components/ui/Card';
+//import CardContent from './components/ui/CardContent';
+import CardHeader from './components/ui/CardHeader';
+import CardTitle from './components/ui/CardTitle';
+import Dialog from './components/ui/Dialog';
+import DialogContent from './components/ui/DialogContent';
+import DialogDescription from './components/ui/DialogDescription';
+import DialogHeader from './components/ui/DialogHeader';
+import DialogTitle from './components/ui/DialogTitle';
+import Input from './components/ui/Input';
+import Label from './components/ui/Label';
+import Progress from './components/ui/Progress';
+import Select from './components/ui/Select';
+import SelectContent from './components/ui/SelectContent';
+import SelectItem from './components/ui/SelectItem';
+import SelectTrigger from './components/ui/SelectTrigger';
+import SelectValue from './components/ui/SelectValue';
+import Separator from './components/ui/Separator';
+import Textarea from './components/ui/Textarea';
 
 // Componentes de páginas
 import Navbar from './components/Navbar';
@@ -2010,7 +2008,7 @@ export default function App() {
                     <span className="hidden md:inline">Cerrar Sesión</span>
                   </Button>
                 </div>
-              ) : (
+          ) : (
                 <div className="flex items-center space-x-2">
                   <Button 
                     variant="ghost" 
@@ -4920,6 +4918,5 @@ export default function App() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
   );
 }
