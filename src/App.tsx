@@ -1,19 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-// Componentes de UI de Radix/shadcn
-import { Button } from "./components/ui/button";
-import { Input } from "./components/ui/input";
-import { Badge } from "./components/ui/badge";
-import { Card, CardHeader, CardTitle, CardContent } from "./components/ui/card";
-import { Label } from "./components/ui/label";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "./components/ui/select";
-import { Textarea } from "./components/ui/textarea";
-import { Dialog } from "./components/ui/dialog";
-import { Progress } from "./components/ui/progress";
-
-// Iconos de Lucide
 import {
   Search, Package, Truck, CheckCircle, Clock, MessageCircle, Settings,
   MapPin, User, FileText, DollarSign, History, Menu, Send, UserPlus,
@@ -21,12 +7,36 @@ import {
   Bell, Eye, Banknote, TrendingUp, BarChart3, Edit, LogOut, Lock,
   X, Zap, Brain, Timer, Navigation as RouteIcon, Calculator, PackageCheck, Plane,
   Building, ChevronDown, ChevronUp, Play, RefreshCw, Target, Activity,
-  Cpu, Database, Lightbulb, Table, Route
+  Cpu, Database, Lightbulb, Navigation, Table, Code
 } from 'lucide-react';
 
+// Import UI components
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  Input,
+  Label,
+  Progress,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Separator,
+  Textarea
+} from './components/ui';
+
 // Componentes de páginas
-import Home from './pages/Home';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import Shipping from './pages/Shipping';
 import Tracking from './pages/Tracking';
 
@@ -944,29 +954,6 @@ export default function App() {
     setNumeroRastreoActual('');
     setEnvioDetalle(null);
     limpiarBusqueda();
-  };
-
-  const manejarRastreoRapido = () => {
-    if (mostrarSearchPad) {
-      // Si ya está abierto, ejecutar rastreo
-      manejarRastreo();
-    } else {
-      // Si está cerrado, abrir el search pad
-      setMostrarSearchPad(true);
-    }
-  };
-
-  const verDetalleEnvio = (envio: Envio) => {
-    setEnvioDetalle(envio);
-    setPaginaActual('detalle-envio');
-  };
-
-  const volverAtras = () => {
-    if (paginaActual === 'realizar-envio') {
-      setPaginaActual('inicio');
-    } else {
-      volverAInicio();
-    }
   };
 
   // Función para obtener rutas optimizadas automáticas
@@ -2645,7 +2632,7 @@ export default function App() {
                         <div className="h-3 w-3 bg-blue-500 rounded-full animate-pulse"></div>
                         <div className="flex-1">
                           <p className="font-medium text-blue-800">Conductores Disponibles</p>
-                          <p className="text-sm text-blue-600">8 conductores listos para asignación automática</p>
+                          <p className="text-sm text-blue-600 mb-3">8 conductores listos para asignación automática</p>
                         </div>
                         <User className="h-8 w-8 text-blue-600" />
                       </div>
@@ -2916,7 +2903,7 @@ export default function App() {
                           <div className="flex items-center justify-between">
                             <div>
                               <p className="font-medium text-blue-800">Motocicletas</p>
-                              <p className="text-sm text-blue-600">3 conductores disponibles</p>
+                              <p className="text-sm text-blue-600 mb-3">3 conductores disponibles</p>
                             </div>
                             <div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center">
                               <span className="text-white text-sm font-bold">3</span>
@@ -2928,7 +2915,7 @@ export default function App() {
                           <div className="flex items-center justify-between">
                             <div>
                               <p className="font-medium text-green-800">Vans</p>
-                              <p className="text-sm text-green-600">3 conductores disponibles</p>
+                              <p className="text-sm text-green-600 mb-3">3 conductores disponibles</p>
                             </div>
                             <div className="h-8 w-8 bg-green-600 rounded-full flex items-center justify-center">
                               <span className="text-white text-sm font-bold">3</span>
@@ -2940,7 +2927,7 @@ export default function App() {
                           <div className="flex items-center justify-between">
                             <div>
                               <p className="font-medium text-orange-800">Camiones</p>
-                              <p className="text-sm text-orange-600">2 conductores disponibles</p>
+                              <p className="text-sm text-orange-600 mb-3">2 conductores disponibles</p>
                             </div>
                             <div className="h-8 w-8 bg-orange-600 rounded-full flex items-center justify-center">
                               <span className="text-white text-sm font-bold">2</span>
@@ -2950,7 +2937,7 @@ export default function App() {
                       </div>
                       
                       <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 mb-2">
                           <Timer className="h-5 w-5 text-yellow-600" />
                           <p className="font-medium text-yellow-800">Ventanas de Operación</p>
                         </div>
@@ -3144,19 +3131,19 @@ export default function App() {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
                           <div className="text-center">
                             <p className="font-medium text-blue-600">✓ Agrupación Automática</p>
-                            <p className="text-gray-500">5+ envíos → ruta</p>
+                            <p className="text-blue-600">5+ envíos → ruta</p>
                           </div>
                           <div className="text-center">
                             <p className="font-medium text-green-600">✓ Asignación Conductores</p>
-                            <p className="text-gray-500">Por experiencia/rating</p>
+                            <p className="text-green-600">Por experiencia/rating</p>
                           </div>
                           <div className="text-center">
                             <p className="font-medium text-purple-600">✓ Ventanas Operación</p>
-                            <p className="text-gray-500">Horarios por servicio</p>
+                            <p className="text-purple-600">Horarios por servicio</p>
                           </div>
                           <div className="text-center">
                             <p className="font-medium text-orange-600">✓ Notificaciones IA</p>
-                            <p className="text-gray-500">Cliente + conductor</p>
+                            <p className="text-orange-600">Cliente + conductor</p>
                           </div>
                         </div>
                       </div>
@@ -3191,7 +3178,7 @@ export default function App() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center p-4 bg-white rounded-lg border">
                         <h3 className="font-medium text-blue-800 mb-2">Supabase PostgreSQL</h3>
-                        <p className="text-sm text-blue-600">Base de datos principal con tabla KV</p>
+                        <p className="text-sm text-blue-600 mb-2">Base de datos principal con tabla KV</p>
                         <div className="mt-2 text-xs text-blue-500">
                           <p>• Tabla: kv_store_758edb6a</p>
                           <p>• Tipo: Key-Value Store</p>
@@ -3200,7 +3187,7 @@ export default function App() {
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg border">
                         <h3 className="font-medium text-green-800 mb-2">Edge Functions</h3>
-                        <p className="text-sm text-green-600">Servidor Hono con lógica de negocio</p>
+                        <p className="text-sm text-green-600 mb-2">Servidor Hono con lógica de negocio</p>
                         <div className="mt-2 text-xs text-green-500">
                           <p>• Optimización IA</p>
                           <p>• Gestión de rutas</p>
@@ -3209,7 +3196,7 @@ export default function App() {
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg border">
                         <h3 className="font-medium text-purple-800 mb-2">Frontend React</h3>
-                        <p className="text-sm text-purple-600">Interfaz completa en español</p>
+                        <p className="text-sm text-purple-600 mb-2">Interfaz completa en español</p>
                         <div className="mt-2 text-xs text-purple-500">
                           <p>• Rastreo en tiempo real</p>
                           <p>• Chat IA (Packito)</p>
@@ -3263,7 +3250,7 @@ export default function App() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       {/* Entidades Principales */}
                       <div className="space-y-4">
-                        <h3 className="font-medium text-gray-800">Entidades Principales</h3>
+                        <h3 className="font-medium text-center text-gray-800 mb-4">Entidades Principales</h3>
                         
                         {/* Envíos */}
                         <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
@@ -3322,7 +3309,7 @@ export default function App() {
 
                       {/* Entidades de Soporte */}
                       <div className="space-y-4">
-                        <h3 className="font-medium text-gray-800">Entidades de Soporte</h3>
+                        <h3 className="font-medium text-center text-gray-800 mb-4">Entidades de Soporte</h3>
                         
                         {/* Notificaciones */}
                         <div className="border border-orange-200 rounded-lg p-4 bg-orange-50">
@@ -3966,7 +3953,6 @@ export default function App() {
               </div>
             )}
 
-            {/* Otras páginas existentes... */}
             {paginaActual === 'soporte' && (
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl mb-4">Centro de Soporte</h2>
@@ -4098,6 +4084,7 @@ export default function App() {
                   <div className="mt-6 text-center">
                     <Button
                       onClick={iniciarChat}
+                      onClick={iniciarChat}
                       className="bg-purple-600 hover:bg-purple-700"
                     >
                       <Bot className="h-4 w-4 mr-2" />
@@ -4114,10 +4101,7 @@ export default function App() {
                   <Button variant="ghost" size="icon" onClick={volverAtras}>
                     <ArrowLeft className="h-5 w-5" />
                   </Button>
-                  <div>
-                    <h2 className="text-xl">Nuestras Ubicaciones</h2>
-                    <p className="text-gray-600">Red de distribución VALOR EXPress</p>
-                  </div>
+                  <h2 className="text-xl">Nuestras Ubicaciones</h2>
                 </div>
 
                 {/* Oficina Central Destacada */}
@@ -4147,6 +4131,22 @@ export default function App() {
                               <Building className="h-6 w-6 text-white" />
                             </div>
                             <p className="text-xs text-red-600 font-medium">Sede Central</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                {/* Otras Ubicaciones */}
+                <div>
+                  <h3 className="text-lg mb-4 flex items-center gap-2">
+                    <Globe className="h-5 w-5 text-blue-600" />
+                    Red de Distribución
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {ubicacionesMock.filter(u => u.tipo !== 'sede_principal').map((ubicacion) => (
+                      <Card key={ubicacion.id} className={`hover:shadow-md transition-shadow ${
                           </div>
                         </div>
                       </CardContent>
